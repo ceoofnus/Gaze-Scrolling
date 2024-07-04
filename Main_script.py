@@ -126,6 +126,7 @@ def scroll_webpage(screen_coords, screen_width, screen_height):
         print("NO SCROLLING")
         pass  # No scrolling
 
+# update with path of where CNN_model is stored on your machine
 model = tf.keras.models.load_model(r"C:\Users\zhaox\Downloads\CNN_model")
 
 cap = cv2.VideoCapture(0)
