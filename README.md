@@ -7,4 +7,8 @@ Utilising Computer Vision, Deep Learning and image processing, this script allow
 2. A Tensorflow CNN model was trained on Colab with the images in MPIIGaze and saved. The Functional (instead of Sequential) API was called due to multimodal nature (input contains both head pose and eye images).
 3. Intrinsic camera parameters (camera matrix, rotation + translation vectors, distortion coeff) obtained via pictures taken by laptop webcam. Necessary for transformation from predicted 3D gaze vectors to 2D on-screen coordinates.
 4. A pre-trained frontal face detector was imported from dlib, producing eye images and head pose vector.
-5. Script assembled in Python 3.8 IDLE + auxilliary functions added 
+5. Script assembled in Python 3.8 IDLE + auxilliary functions added
+
+# Usage instructions
+1. Download the Main_script py file. Note that the scipt must be run LOCALLY for it to have access to your webcam.
+2. Download and unzip my trained CNN_model.
