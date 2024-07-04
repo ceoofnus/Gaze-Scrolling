@@ -12,3 +12,7 @@ Utilising Computer Vision, Deep Learning and image processing, this script allow
 # Usage instructions
 1. Download the Main_script py file. Note that the scipt must be run LOCALLY for it to have access to your webcam.
 2. Download and unzip my trained CNN_model.
+3. Downlaod the dlib facial landmark detector from here: https://huggingface.co/spaces/asdasdasdasd/Face-forgery-detection/blob/ccfc24642e0210d4d885bc7b3dbc9a68ed948ad6/shape_predictor_68_face_landmarks.dat
+4. Update paths of CNN_model and dlib shape_predictor in the main script.
+5. Note that scrolling effects may not be optimal as the script is based off my own laptop's intrinsic webcam parameters. I'm still working on trying to obtain users' parameters.
+6. Execute the script and have fun scrolling with your eyes!
