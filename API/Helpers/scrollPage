@@ -1,0 +1,18 @@
+# deprecate this; scrollign should only be handled by FRONT END
+
+# def scroll_webpage(screen_coords, screen_width, screen_height):
+#     x, y = screen_coords
+#     top_threshold = screen_height * 0.2
+#     bottom_threshold = screen_height * 0.8
+
+
+#     # adjust threshold according to your screen pixel dimensions
+#     if y >= 538:  
+#         print("SCROLLING UP")
+#         pyautogui.scroll(1500)  # Scroll up
+#     elif y <= 537:
+#         print("SCROLLING DOWN")
+#         pyautogui.scroll(-1500)  # Scroll down
+#     else:
+#         print("NO SCROLLING")
+#         pass  # No scrolling
