@@ -76,7 +76,7 @@ async def onscreen_coord(frames):
     print(f"Predicted Gaze: {predicted_gaze}")
     
     # Convert predicted gaze vector to screen coordinates
-    screen_coords = gaze_to_screen(predicted_gaze, camera_matrix, dist_coeffs, rvec, tvec)
+    screen_coords = gaze_to_screen(predicted_gaze, camera_matrix, dist_coeffs, rotational_vec, translational_vec)
 
     return screen_coords
 
