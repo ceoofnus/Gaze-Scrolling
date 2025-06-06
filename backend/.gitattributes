@@ -1,0 +1,4 @@
+# treat TensorFlow SavedModel files as binary
+*.pb       -text
+*.pbtxt    -text
+variables/** -text
