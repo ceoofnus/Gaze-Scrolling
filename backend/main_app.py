@@ -39,19 +39,19 @@ model = tf.keras.models.load_model(r"CNN_model")
 #cap = cv2.VideoCapture(0)
 
 # Get screen dimensions
-sw = os.environ.get('SCREEN_WIDTH') 
-sh = os.environ.get('SCREEN_HEIGHT')    
+# sw = os.environ.get('SCREEN_WIDTH') 
+# sh = os.environ.get('SCREEN_HEIGHT')    
 #sw, sh = pyautogui.size()
 
 app = FastAPI()
 # the only necessary endpoint of the API
 # takes in captured frame and returns on screen gaze coordinates
 @app.post("/")  
-async def onscreen_coord(frames):
-    try:
-        ret, frame = cap.read()    # refactor THIS part to accept POST from frontend    
-    except Exception as e:
-        return {f"error: I wasn't able to capture a frame from the webcam"}  
+async def onscreen_coord(frame):
+    # try:
+    #     ret, frame = cap.read()    # refactor THIS part to accept POST from frontend    
+    # except Exception as e:
+    #     return {f"error: I wasn't able to capture a frame from the webcam"}  
     
     # Extract eye images and head pose from the frame
     left_eye_image, right_eye_image, head_pose = get_eye_images_and_head_pose(frame)
