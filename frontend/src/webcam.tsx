@@ -38,7 +38,7 @@ const webCamComponent: React.FC<Props> = ({
         formData.append('image', blob);
         formData.append('screenHeight', screenHeight.toString());
 
-        const response = await fetch(`${apiBase}/upload`, {
+        const response = await fetch(apiBase, {
             method: "POST",
             body: formData
         });
