@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File
 import numpy as np
 import cv2
 import tensorflow as tf
@@ -52,8 +52,10 @@ app.add_middleware(CORSMiddleware, origins)
 # the only necessary endpoint of the API
 # takes in captured frame and returns on screen gaze coordinates
 @app.post("/")  
-async def onscreen_coord(frame):
-    
+async def onscreen_coord(image: UploadFile = File(...)):
+    raw_bytes = await image.read()
+    np_array = np.frombuffer(raw_bytes, np.uint8)
+    frame = cv2.imdecoode(np_array, cv2.IMREAD_COLOR) # actual frame
     
     # Extract eye images and head pose from the frame
     left_eye_image, right_eye_image, head_pose = get_eye_images_and_head_pose(frame)
@@ -61,7 +63,7 @@ async def onscreen_coord(frame):
     if left_eye_image is None or right_eye_image is None or head_pose is None:
         return {"error": "Could not capture eye images or head pose"}
     
-    # Preprocess the images
+    # Normalize eye images
     left_eye_image = left_eye_image / 255.0
     right_eye_image = right_eye_image / 255.0
 
