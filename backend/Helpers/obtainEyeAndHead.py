@@ -1,6 +1,10 @@
 
 # take in frame and return eye images and head pose
 # to be fed into CNN model to produce gaze coordinates
+import dlib
+
+detector = dlib.get_frontal_face_detector()
+predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
 def get_eye_images_and_head_pose(frame):
     # Convert frame to grayscale

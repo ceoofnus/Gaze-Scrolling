@@ -2,11 +2,13 @@ from fastapi import FastAPI
 import numpy as np
 import cv2
 import tensorflow as tf
-#import pyautogui
+import dlib
 import os
 from Helpers import gaze_to_screen
 #from Helpers import scroll_webpage
 from Helpers import get_eye_images_and_head_pose
+from fastapi.middleware.cors import CORSMiddleware
+
 
 
 # set of intrinsic camera parameters obtained via camera callibration 
@@ -44,14 +46,14 @@ model = tf.keras.models.load_model(r"CNN_model")
 #sw, sh = pyautogui.size()
 
 app = FastAPI()
+origins = ['https://gaze-scrolling.vercel.app/']
+app.add_middleware(CORSMiddleware, origins)
+
 # the only necessary endpoint of the API
 # takes in captured frame and returns on screen gaze coordinates
 @app.post("/")  
 async def onscreen_coord(frame):
-    # try:
-    #     ret, frame = cap.read()    # refactor THIS part to accept POST from frontend    
-    # except Exception as e:
-    #     return {f"error: I wasn't able to capture a frame from the webcam"}  
+    
     
     # Extract eye images and head pose from the frame
     left_eye_image, right_eye_image, head_pose = get_eye_images_and_head_pose(frame)
