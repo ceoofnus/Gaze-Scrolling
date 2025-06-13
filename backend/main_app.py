@@ -46,8 +46,13 @@ model = tf.keras.models.load_model(r"CNN_model")
 #sw, sh = pyautogui.size()
 
 app = FastAPI()
-origins = ['https://gaze-scrolling.vercel.app/']
-app.add_middleware(CORSMiddleware, origins)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://gaze-scrolling.vercel.app"],  
+    allow_methods=["POST", "OPTIONS"],
+    allow_headers=["*"],
+    allow_credentials=False,
+)
 
 # the only necessary endpoint of the API
 # takes in captured frame and returns on screen gaze coordinates
@@ -55,7 +60,7 @@ app.add_middleware(CORSMiddleware, origins)
 async def onscreen_coord(image: UploadFile = File(...)):
     raw_bytes = await image.read()
     np_array = np.frombuffer(raw_bytes, np.uint8)
-    frame = cv2.imdecoode(np_array, cv2.IMREAD_COLOR) # actual frame
+    frame = cv2.imdecode(np_array, cv2.IMREAD_COLOR) # actual frame
     
     # Extract eye images and head pose from the frame
     left_eye_image, right_eye_image, head_pose = get_eye_images_and_head_pose(frame)
