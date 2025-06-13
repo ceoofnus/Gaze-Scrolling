@@ -2,6 +2,25 @@
 # take in frame and return eye images and head pose
 # to be fed into CNN model to produce gaze coordinates
 import dlib
+import cv2              
+import numpy as np
+
+
+dist_coeffs =  np.array([[ 1.16603278e+00, -2.57544176e+01,  5.02202043e-03,  9.03556267e-03,
+1.67081879e+02]])
+
+camera_matrix = np.array([[1.80304400e+03, 0.00000000e+00, 6.18630102e+02],
+[0.00000000e+00, 1.79626830e+03, 3.00968604e+02],
+[0.00000000e+00, 0.00000000e+00, 1.00000000e+00]])
+
+rotational_vec = np.array([[-0.25410708],
+       [ 0.33550616],
+       [ 3.10371462]])
+
+translational_vec = np.array([[ 4.43475453],
+       [ 3.47038079],
+       [25.13409626]])
+
 
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
@@ -50,6 +69,16 @@ def get_eye_images_and_head_pose(frame):
         landmarks[48],     # Left Mouth corner
         landmarks[54]      # Right mouth corner
     ], dtype="double")
+
+    # Define 3D model points for head pose estimation
+    model_points = np.array([
+        (0.0, 0.0, 0.0),             # Nose tip
+        (0.0, -330.0, -65.0),        # Chin
+        (-225.0, 170.0, -135.0),     # Left eye left corner
+        (225.0, 170.0, -135.0),      # Right eye right corner
+        (-150.0, -150.0, -125.0),    # Left Mouth corner
+        (150.0, -150.0, -125.0)      # Right mouth corner
+    ])
     
   
 

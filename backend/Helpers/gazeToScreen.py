@@ -1,4 +1,6 @@
 # take in CNN output (gaze vector) and convert to onscreen coordinates
+import cv2
+import numpy as np
 
 def gaze_to_screen(gaze_vector, camera_matrix, dist_coeffs, rvec, tvec):
     gaze_vector = np.array(gaze_vector).reshape(-1, 3)
