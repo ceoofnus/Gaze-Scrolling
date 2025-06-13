@@ -56,9 +56,9 @@ def get_eye_images_and_head_pose(frame):
     right_eye_image = np.expand_dims(right_eye_image, axis=-1)
 
     # Visualize eye images
-    cv2.imshow("Left Eye", left_eye_image)
-    cv2.imshow("Right Eye", right_eye_image)
-    cv2.waitKey(1)
+    # cv2.imshow("Left Eye", left_eye_image)
+    # cv2.imshow("Right Eye", right_eye_image)
+    # cv2.waitKey(1)
     
     # 2D image points
     image_points = np.array([
