@@ -9,6 +9,7 @@ def gaze_to_screen(gaze_vector, camera_matrix, dist_coeffs, rvec, tvec):
     screen_coords, _ = cv2.projectPoints(gaze_vector, rvec, tvec, camera_matrix, dist_coeffs)
     print(f"Screen Coordinates (After Projection): {screen_coords}")
 
-    return screen_coords.ravel()
+    x_py, y_py = map(float, screen_coords.ravel()[:2])
+    return {"x": x_py, "y": y_py}
 
 
